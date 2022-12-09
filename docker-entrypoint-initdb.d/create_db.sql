@@ -1,0 +1,3 @@
+CREATE DATABASE random_dev;
+
+GRANT ALL PRIVILEGES ON DATABASE random_dev TO postgres;
