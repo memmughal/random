@@ -47,11 +47,6 @@ Postgres credentials:
 ### Implementation Details
 The user points update is handled in batches, which takes a few milliseconds to finish. 
 
-In an edge case if a request to fetch users arrives during this update, it takes a bit of more time to respond back. To handle this situation, genserver timeout is increased to 10 seconds rather than the default 5 seconds. 
-
-I have taken Keeping It Simple approach to solve this problem. I started with update all query but it took too long and blocked the database to handle any read requests. 
-Next idea was to update user points in batches, it had an edge case but worked for all other cases. As described above, after handling the edge case, this was the solution I went for. 
-
 I have not created index on points column although we are searching on it because our writes/updates are more fequent than our reads. Index would have made it slower to update the data.  
 
 ### Looking into future

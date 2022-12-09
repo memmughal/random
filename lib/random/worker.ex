@@ -45,7 +45,8 @@ defmodule Random.Worker do
   @impl true
 
   def handle_info(:update_points, state) do
-    {:ok, _} = Users.update_all_points()
+
+    Task.start(fn -> Users.update_all_points() end)
 
     new_max_number = generate_random_number()
     state = %{state | max_number: new_max_number}

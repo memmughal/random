@@ -13,10 +13,8 @@ defmodule Random.Users do
     maximum_id = from(u in User, select: max(u.id)) |> Repo.one()
 
     Logger.info("Starting batch update at #{DateTime.utc_now()}")
-    result = update_range(0, @batch_size, maximum_id)
+    update_range(0, @batch_size, maximum_id)
     Logger.info("Finishing batch update at #{DateTime.utc_now()}")
-
-    {:ok, result}
   end
 
   def get_users(max_points) do
@@ -32,7 +30,7 @@ defmodule Random.Users do
     query = from u in User, where: u.id >= ^start_index and u.id < ^end_index
 
     query
-    |> update(set: [points: fragment("floor(random()*100)")])
+    |> update(set: [points: fragment("floor(random()*101)")])
     |> Repo.update_all([])
 
     update_range(start_index + @batch_size, end_index + @batch_size, maximum_id)
