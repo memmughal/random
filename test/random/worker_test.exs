@@ -2,7 +2,7 @@ defmodule WorkerTest do
   use Random.DataCase, async: true
 
   alias Random.Repo
-  alias Random.Schema.User
+  alias Random.Users.User
   alias Random.Worker
 
   describe "init/1" do

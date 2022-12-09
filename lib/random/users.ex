@@ -2,7 +2,7 @@ defmodule Random.Users do
 
   import Ecto.Query
 
-  alias Random.Schema.User
+  alias Random.Users.User
   alias Random.Repo
 
   require Logger
